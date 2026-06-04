@@ -12,6 +12,6 @@
 **CACHE:** Redis v8.2  
 **DATABASE:** Postgres 18  
 **MQS:** Kafka 4.3.0
+**CLOUD** AWS
 
-
-![image](./diagrams/arquitecture-diagram.png)
+![image](./diagrams/architecture-diagram.png)
