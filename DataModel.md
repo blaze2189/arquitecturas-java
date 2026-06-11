@@ -1,5 +1,27 @@
 # Data Model
 
+## Login
+
+### Database model
+
+![img](./diagrams/database/login-databes.png)
+
+**Table:** User  
+**Description:** Available places for the events  
+**Fields:**  
+ - id -> integer
+ - name -> varchar
+ - last_name -> varchar
+ - date_signed -> timestamp
+ - last_signin -> timestamp
+
+**Table:** User_Authentication  
+**Description:** Available places for the events  
+**Fields:**  
+ - id -> integer
+ - user_id -> integer
+ - password -> varchar
+
 ## Event
 
 ### Database model
@@ -75,6 +97,7 @@
 
 ## Payment
 
+### Database model
 ![img](./diagrams/database/payment_database.png)
 
 **Table:** Payment  
@@ -104,6 +127,8 @@
  - date -> timestamp 
 
 ## Notification
+
+### Database model
 
 ![img](./diagrams/database/notification_database.png)
 
