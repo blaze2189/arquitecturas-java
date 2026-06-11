@@ -61,7 +61,7 @@
  - status -> varchar  
  - date -> timestamp
 
- **Table:** Booking_Historical  
+**Table:** Booking_Historical  
 **Description:** Save information about bookings  
 **Fields:**
  - id -> integer
@@ -72,3 +72,59 @@
  - transaction_id -> number
  - status -> varchar  
  - date -> timestamp
+
+## Payment
+
+![img](./diagrams/database/payment_database.png)
+
+**Table:** Payment  
+**Description:** Save information regarding payment  
+**Fields:**
+ - id -> integer
+ - transaction_id -> number
+ - event_name -> varchar
+ - event_id -> integer
+ - user_email -> varchar
+ - user_name -> varchar
+ - status -> varchar  
+ - message -> varchar
+ - date -> timestamp
+
+**Table:** Payment_Historical  
+**Description:** Save historical information regarding payment  
+**Fields:**
+ - id -> integer
+ - transaction_id -> number
+ - event_name -> varchar
+ - event_id -> integer
+ - user_email -> varchar
+ - user_name -> varchar
+ - status -> varchar  
+ - message -> varchar
+ - date -> timestamp 
+
+## Notification
+
+![img](./diagrams/database/notification_database.png)
+
+**Table:** Notification  
+**Description:** Track information about emails sent to the customers  
+**Fields:**
+ - id -> integer
+ - template_id -> integer
+ - event_id -> integer
+ - event_name -> varchar
+ - date_send -> timestamp 
+ - user_email -> varchar
+ - transaction_id -> number
+
+**Table:** Template  
+**Description:** Store information about avilable templates, located in S3, templates will be send to notify the customer about the result of his payment 
+**Fields:**
+ - id -> integer
+ - template_id -> integer
+ - event_id -> integer
+ - event_name -> varchar
+ - date_send -> timestamp 
+ - user_email -> varchar
+ - transaction_id -> number
