@@ -16,7 +16,7 @@ There are two scenarios identified.
 1. The gateway send the cookie to the UI.
 1. The UI stores the code in a secure cookie (_HttpOnly_).
 1. For any other request, the UI will attach the cookie to the gateway.
-1. Gateway will keep the token between request in order to keep the authorization process.
+1. Gateway will keep the token between request in order to continue the authorization process.
 
 _Note: The TLS and mTLS are configured at infrastructure layer_
 
@@ -34,7 +34,17 @@ _Note: The TLS and mTLS are configured at infrastructure layer_
 
 ## Booking
 
+Assuming that:
+ - The user is already logged (authenticated and authorized).
+ - The user has already searched the event.
+ - The user is already at the seat selection screen.
+
+
 ### On success
+
+1. The user cchooses his seats and add his payment data.
+1. Send payment information via gateway.
+2. Booking microservice 
 
 ![image](./diagrams/sequence_diagram/sucess-booking-sequence.png)
 
