@@ -8,7 +8,7 @@ There are two scenarios identified.
 1. The user enter his data (user and password), the user is found and have access to the system.
 1. The user enter invalid data, either because the user doesn't exisit nor the user and password don't match, then te user can't login into the system.
 
-### 1. On success
+### On success
 
 1. The user type his user and password.
 1. The gateway receives the data and send to keycloak.
@@ -42,12 +42,43 @@ Assuming that:
 
 ### On success
 
-1. The user cchooses his seats and add his payment data.
+1. The user chooses his seats and add his payment data.
 1. Send payment information via gateway.
-2. Booking microservice 
+1. UI will open a socket to wait for booking result.
+1. Booking microservice, vaildates (in cache) if the seats still available (status `AVAILABLE`), if so the seats status will be updated in cache to `AWAITING`, blocking the seats for other requests.
+1. Create a Booking record in database with status `IN_PROGRESS`.
+1. Booking service sends payment request.
+1. Payment service registers the payment, and wait till lthe vendor send payment confirmation with satus `IN_PROGRESSS`.
+1. When payment is success the record is updated to `SUCCESS`, and send response to Booking service.
+1. Update booking record status to `BOOKED`.
+1. Booking will update the status of the seats in cache then in database to `UNAVAILABLE`.
+1. Booking send the request to Notificcation service, requesting for a user email confirmation.
+1. Booking service send notification to UI, so the user can see the confirmation.
 
 ![image](./diagrams/sequence_diagram/sucess-booking-sequence.png)
 
 ### On fail
 
+#### Booking fail
+
+1. The user chooses his seats and add his payment data.
+1. Send payment information via gateway.
+1. UI will open a socket to wait for booking result.
+1. Booking microservice, vaildates(in cache) if the seats still available (status `AVAILABLE`), for this scenario the seats are not available.
+1. Create a booking reccord in booking databases with status `FAILED`.
+1. Booking service will send the failed meesage to UI socket.
+
 #### Payment fail
+
+1. The user chooses his seats and add his payment data.
+1. Send payment information via gateway.
+1. UI will open a socket to wait for booking result.
+1. Booking microservice, vaildates (in cache) if the seats still available (status `AVAILABLE`), if so the seats status will be updated in cache to `AWAITING`, blocking the seats for other requests.
+1. Create a Booking record in database with status `IN_PROGRESS`.
+1. Booking service sends payment request.
+1. Payment service registers the payment, and wait till lthe vendor send payment confirmation with satus `IN_PROGRESSS`, for this scenario the payment is unsuccesss.
+1. As payment is unsuccess the record is updated to `FAILES`, and send response to Booking service.
+1. Update booking record status to `FAILED`.
+1. Booking will update the status of the seats in cache then in database to `AVAILABLE`.
+1. Booking send the request to Notificcation service, requesting for a user email notification, sending evidence that the payment failed and no charge was don.
+1. Booking service send notification to UI, so the user can see the result of the payment.
