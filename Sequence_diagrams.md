@@ -32,6 +32,14 @@ _Note: The TLS and mTLS are configured at infrastructure layer_
 
 ![image](./diagrams/sequence_diagram/login-fail-sequence.png)
 
+## Search event
+
+Userss doesn't need to be logged in to search for events.
+1. User search for event.
+1. Gateway will send request to events microservice.
+1. Events microservice will search in cache for event and availability.
+1. If user decides to buy, it will be necessary to log in.
+
 ## Booking
 
 Assuming that:
@@ -54,6 +62,8 @@ Assuming that:
 1. Booking will update the status of the seats in cache then in database to `UNAVAILABLE`.
 1. Booking send the request to Notificcation service, requesting for a user email confirmation.
 1. Booking service send notification to UI, so the user can see the confirmation.
+
+*Note:* the reques sent to booking, are sent via kafca, so the order get enqueued.
 
 ![image](./diagrams/sequence_diagram/sucess-booking-sequence.png)
 
