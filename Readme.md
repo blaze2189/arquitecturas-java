@@ -1,18 +1,17 @@
-# Proyecto Final
+# Final Proyect
 
-Desarrollo de la arquitectura de un sistema de reservaciones, el cual debe:
-- Evitar overlaping
-- Implmentar resiliencia
-- Soportar picos de demandas
+Dvelopment of a booking system, which should:
+- Avoid overlapping
+- Be resilient
+- Handle high demand request
 
-## Desarrollo:
+## Development
 
-- [Diagrama de arquitectura](./Diagrama_de_arquitectura.md)
-- [Diagrama de decomposición de servicios](./Diagrama_descomposicion.md)   <!-- DD bounded contexts y context map-->
-- [API spec endpoints, métodos, request, response data](./API_specs.md)
+- [Architecture Diagram](./Diagrama_de_arquitectura.md)
+- [Decomposition diagram](./Diagrama_descomposicion.md)   <!-- DD bounded contexts y context map-->
+- [API spec endpoints](./API_specs.md)
 - [Data model](./DataModel.md) <!-- entidades principales, datos y tipos -->
 - [Tech stack](https://www.google.com)
-
-
+- [Sequence Diagrams](./Sequence_diagrams.md)
 
 [comment]: <> (This also works perfectly)
