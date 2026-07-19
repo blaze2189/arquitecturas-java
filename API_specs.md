@@ -8,7 +8,6 @@
 ---
 - **TYPE:** GET
 - **PATH:** getAvailable
-
 - __BODY RESPONSE:__ 
 
 On success
