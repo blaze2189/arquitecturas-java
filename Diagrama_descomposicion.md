@@ -12,10 +12,15 @@
    └──📂 infrastructure
       ├──📂 in
       |  └──📂 http
-      |     ├──📂 controller
-      |     |  └──📄 BookingController
-      |     └──📂 entity
-      |        └──📄 BookingRequest
+      |  |  ├──📂 controller
+      |  |  |  └──📄 BookingController
+      |  |  └──📂 entity
+      |  |     └──📄 BookingRequest
+      |  └──📂 queue
+      |     ├──📂 entity
+      |     |  └──📄 BookingMessage            
+      |     └──📂 sender
+      |        └──📄 BookingConsumer 
       └──📂 out 
          ├──📂 db
          |  ├──📂 entity
@@ -31,7 +36,7 @@
             ├──📂 entity
             |  └──📄 NotificationMessage            
             └──📂 sender
-               └──📄 PaymentRequest            
+               └──📄 NotificationProducer           
 
 ──
 └──
@@ -72,12 +77,25 @@
 ## Notification
 
 ``` 
-├── 📂 com
-|  ├── 📂 application
-|  |    ├── 📂 
-|  ├── 📂 domain
-|  |    ├── 📂 
-|  ├── 📂 infrastructure
+├──📂 com
+   ├──📂 application
+   |  └──📄 EmailNotificationService
+   ├──📂 domain
+   |  └──📂 use.case
+   |     └──📄 SendEmailConfirmation
+   └──📂 infrastructure
+      ├──📂 in
+      |  └──📂 queue
+      |     ├──📂 entity
+      |     |   └──📄 NotificationMessage
+      |     └──📂 consumer
+      |        └──📄 NotificationConsusmer
+      └──📂 out 
+         └──📂 queue
+            ├──📂 entity
+            |   └──📄 NotificationMessage
+            └──📂 consumer
+               └──📄 NotificationConsusmer
 
 ──
 └──
@@ -86,13 +104,38 @@
 ## Events
 
 ``` 
-├── 📂 com
-|  ├── 📂 application
-|  |    ├── 📂 
-|  ├── 📂 domain
-|  |    ├── 📂 
-|  ├── 📂 infrastructure
-
+├──📂 com
+   ├──📂 application
+   |  └──📄 BookingService
+   ├──📂 domain
+   |  └──📂 use.case
+   |     ├──📄 GetEventCapaccity
+   |     ├──📄 SearchEvent
+   |     ├──📄 SearchActiveEvent
+   |     └──📄 UpdateEventBooking
+   └──📂 infrastructure
+      ├──📂 in
+      |  └──📂 http
+      |  |  ├──📂 controller
+      |  |  |  └──📄 EventController
+      |  |  └──📂 entity
+      |  |     └──📄 EventRequest
+      |  └──📂 queue
+      |     ├──📂 entity
+      |     |  └──📄 BookingMessage            
+      |     └──📂 sender
+      |        └──📄 BookingConsumer 
+      └──📂 out 
+         ├──📂 db
+         |  ├──📂 entity
+         |  |  └──📄 BookingRecord
+         |  └──📂 repository
+         |     └──📄 EventRepository
+         └──📂 queue
+            ├──📂 entity
+            |  └──📄 NotificationMessage            
+            └──📂 sender
+               └──📄 NotificationProducer      
 ──
 └──
 ```

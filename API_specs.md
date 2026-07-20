@@ -11,14 +11,17 @@
 - __BODY RESPONSE:__ 
 
 On success
+
 ```json
-{
-    "eventId":"integer",
-    "eventName":"string",
-    "date":"string",
-    "locationId":"integer",
-    "locationName":"string"
-}
+{"event":[
+    {
+        "id":"integer",
+        "name":"string",
+        "locationId":"integer",
+        "locctionName":"string",
+        "date":"string"
+    }
+]}
 ```
 
 On error
@@ -54,6 +57,31 @@ On error
     "message":"string"
 }
 ```
+
+### Update Event Capacity
+---
+- **TYPE:** PATCH
+- **PATH:** event/{evetnId}/capacity
+- __BODY RESPONSE:__
+
+On success
+```json
+{
+    "eventId":"integer",
+    "eventName":"string",
+    "actuallCapacity":"integer",
+    "currentCapacity":"integer"
+}
+```
+  On error
+```json
+{
+    "code":"integer",
+    "error":"string",
+    "message":"string"
+}
+```
+
 ## Booking
 
 - **TYPE:** POST
@@ -76,7 +104,9 @@ On error
     }
 }
 ```
-- __BODY RESPONSE:__ 
+- __BODY RESPONSE:__
+
+On success
 ```json
 {
     "status:":"string",
@@ -85,7 +115,14 @@ On error
     "code": "integer"
 }
 ```
-
+  On error
+```json
+{
+    "code":"integer",
+    "error":"string",
+    "message":"string"
+}
+```
 
 ## Payment
 
