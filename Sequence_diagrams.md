@@ -38,7 +38,10 @@ Userss doesn't need to be logged in to search for events.
 1. User search for event.
 1. Gateway will send request to events microservice.
 1. Events microservice will search in cache for event and availability.
+1. If no data was found in cache, the data will be searche in db, if found, the data will be stored in cache, otherwise, no data found response will be sent.
 1. If user decides to buy, it will be necessary to log in.
+
+![image](./diagrams/sequence_diagram/search-sequence.png)
 
 ## Booking
 
