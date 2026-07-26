@@ -5,39 +5,101 @@
 ``` 
 ├──📂 com
    ├──📂 application
-   |  └──📄 BookingService
-   ├──📂 domain
-   |  └──📂 use.case
+   |  ├──📂 dto
+   |  |  └──📄 Book
+   |  └──📂 use_case
    |     └──📄 BookEvent
+   ├──📂 domain
+   |  ├──📂 Exceptions
+   |  |  ├──📄 BookingException
+   |  |  ├──📄 NotificationException
+   |  |  └──📄 PaymentException
+   |  ├──📂 model
+   |  |  └──📄 Booking
+   |  |  ├──📄 Notification
+   |  |  └──📄 Payment
+   |  ├──📂 port
+   |  |  ├──📄 BookingConsumerPort
+   |  |  ├──📄 BookingRespositoryPort
+   |  |  ├──📄 NotificationProducerPort
+   |  |  └──📄 PaymentRequestPort
    └──📂 infrastructure
       ├──📂 in
       |  └──📂 http
       |  |  ├──📂 controller
       |  |  |  └──📄 BookingController
-      |  |  └──📂 entity
+      |  |  └──📂 dto
       |  |     └──📄 BookingRequest
       |  └──📂 queue
-      |     ├──📂 entity
+      |     ├──📂 dto
       |     |  └──📄 BookingMessage            
-      |     └──📂 sender
-      |        └──📄 BookingConsumer 
+      |     └──📂 listener
+      |        └──📄 BookingConsumerAdapter 
       └──📂 out 
          ├──📂 db
          |  ├──📂 entity
          |  |  └──📄 BookingRecord
          |  └──📂 repository
-         |     └──📄 BookingRepository
+         |     └──📄 BookingRepositoryAdapter
          ├──📂 http
          |  ├──📂 client
          |  |   └──📄 PaymentClient
-         |  └──📂 entity
-         |     └──📄 PaymentRequest
+         |  └──📂 dto
+         |     └──📄 PaymentRequestAdapter
          └──📂 queue
-            ├──📂 entity
-            |  └──📄 NotificationMessage            
-            └──📂 sender
+            ├──📂 dto
+            |  └──📄 NotificationMessage     
+            └──📂 producer
                └──📄 NotificationProducer           
 
+```
+
+```
+com
+├── application
+│   ├── dto
+│   │   ├── EventResponse
+│   │   └── SearchEventQuery
+│   └── usecase
+│       ├── GetEventCapacityUseCase
+│       ├── SearchEventUseCase
+│       ├── SearchActiveEventUseCase
+│       └── UpdateEventBookingUseCase
+├── domain
+│   ├── exception
+│   │   └── EventNotFoundException
+│   ├── model
+│   │   ├── Event
+│   │   ├── EventId
+│   │   └── SeatCapacity
+│   └── port
+│       ├── EventRepositoryPort
+│       └── NotificationPublisherPort
+└── infrastructure
+    ├── in
+    │   ├── http
+    │   │   ├── dto
+    │   │   │   └── EventRequest
+    │   │   └── EventController
+    │   └── queue
+    │       ├── dto
+    │       │   └── BookingMessage
+    │       └── listener
+    │           └── BookingConsumer
+    └── out
+        ├── db
+        │   ├── entity
+        │   │   └── EventEntity
+        │   ├── mapper
+        │   │   └── EventEntityMapper
+        │   └── repository
+        │       ├── SpringDataEventRepository
+        │       └── EventRepositoryAdapter  <-- (Implementa EventRepositoryPort)
+        └── queue
+            ├── dto
+            │   └── NotificationMessage
+            └── publisher
+                └── NotificationProducer  <-- (Implementa NotificationPublisherPort)
 ```
 
 ## Payment
