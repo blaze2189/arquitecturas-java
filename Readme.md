@@ -11,7 +11,6 @@ Dvelopment of a booking system, which should:
 - [Decomposition diagram](./Diagrama_descomposicion.md)   <!-- DD bounded contexts y context map-->
 - [API spec endpoints](./API_specs.md)
 - [Data model](./DataModel.md) <!-- entidades principales, datos y tipos -->
-- [Tech stack](https://www.google.com)
 - [Sequence Diagrams](./Sequence_diagrams.md)
 
 [comment]: <> (This also works perfectly)

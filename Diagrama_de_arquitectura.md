@@ -14,4 +14,6 @@
 **MQS:** Kafka 4.3.0  
 **CLOUD:** AWS
 
+Microservices will be mounted in Kubernetes ccluster to handle resilience.
+
 ![image](./diagrams/architecture-diagram.png)
