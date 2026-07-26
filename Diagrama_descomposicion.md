@@ -6,6 +6,7 @@
 ├──📂 com
    ├──📂 application
    |  ├──📂 dto
+   |  |  ├──📄 BookingCommand
    |  |  └──📄 BookingResponse
    |  └──📂 usecase
    |     └──📄 BookEventUseCase
@@ -57,6 +58,7 @@
 ├──📂 com
    ├──📂 application
    |  ├──📂 dto
+   |  |  ├──📄 PaymentCommand
    |  |  └──📄 PaymentResponse
    |  └──📂 usecase
    |     └──📄 MakePaymentUseCase
@@ -64,8 +66,10 @@
    |  ├──📂 exception
    |  |  └──📄 PaymentException
    |  ├──📂 model
-   |  |  └──📄 Payment
+   |  |  ├──📄 Payment
+   |  |  └──📄 PaymentStatus
    |  └──📂 port
+   |     ├──📄 PaymentPubllisherPort
    |     ├──📄 PaymentRepositoryPort
    |     └──📄 VendorHttpClientPort
    └──📂 infrastructure
@@ -81,72 +85,36 @@
          |  |  └──📄 PaymentRecord
          |  └──📂 repository
          |     └──📄 PaymentRepositoryAdapter
-         └──📂 http
-            ├──📂 client
-            |   └──📄 VendorClientAdapter
-            └──📂 entity
-               └──📄 VendorRequest
+         ├──📂 http
+         |  ├──📂 client
+         |  |   └──📄 VendorClientAdapter
+         |  └──📂 dto
+         |     └──📄 VendorRequest
+         └──📂 queue
+            ├──📂 dto
+            |  └──📄 NotificationMessage     
+            └──📂 producer
+               └──📄 NotificationProducer  
 
 ```
-
-```
-com
-├── application
-│   ├── dto
-│   │   ├── EventResponse
-│   │   └── SearchEventQuery
-│   └── usecase
-│       ├── GetEventCapacityUseCase
-│       ├── SearchEventUseCase
-│       ├── SearchActiveEventUseCase
-│       └── UpdateEventBookingUseCase
-├── domain
-│   ├── exception
-│   │   └── EventNotFoundException
-│   ├── model
-│   │   ├── Event
-│   │   ├── EventId
-│   │   └── SeatCapacity
-│   └── port
-│       ├── EventRepositoryPort
-│       └── NotificationPublisherPort
-└── infrastructure
-    ├── in
-    │   ├── http
-    │   │   ├── dto
-    │   │   │   └── EventRequest
-    │   │   └── EventController
-    │   └── queue
-    │       ├── dto
-    │       │   └── BookingMessage
-    │       └── listener
-    │           └── BookingConsumer
-    └── out
-        ├── db
-        │   ├── entity
-        │   │   └── EventEntity
-        │   ├── mapper
-        │   │   └── EventEntityMapper
-        │   └── repository
-        │       ├── SpringDataEventRepository
-        │       └── EventRepositoryAdapter  <-- (Implementa EventRepositoryPort)
-        └── queue
-            ├── dto
-            │   └── NotificationMessage
-            └── publisher
-                └── NotificationProducer  <-- (Implementa NotificationPublisherPort)
-```
-
 
 ## Notification
 
 ``` 
 ├──📂 com
    ├──📂 application
-   |  └──📄 EmailNotificationService
+   |  ├──📂 dto
+   |  |  └──📄 SendEmailCommand
+   |  └──📂 usecase
+   |     └──📄 SendEmailConfirmationUseCase   
    ├──📂 domain
-   |  └──📂 use.case
-   |     └──📄 SendEmailConfirmation
+   |  ├──📂 exception
+   |  |  └──📄 SendEmailException
+   |  ├──📂 model
+   |  |  └──📄 Email
+   |  └──📂 port
+   |     ├──📄 BookingProducerPort
+   |     └──📄 NotificationRepositoryPort
    └──📂 infrastructure
       ├──📂 in
       |  └──📂 queue
@@ -156,47 +124,45 @@ com
       |        └──📄 NotificationConsusmer
       └──📂 out 
          └──📂 queue
-            ├──📂 entity
+            ├──📂 dto
             |   └──📄 NotificationMessage
-            └──📂 consumer
-               └──📄 NotificationConsusmer
+            └──📂 produccer
+               └──📄 BookingProducer
 
 ```
+
 
 ## Events
 
 ``` 
 ├──📂 com
    ├──📂 application
-   |  └──📄 BookingService
+   |  ├──📂 dto
+   |  |  └──📄 EventCommand
+   |  └──📂 usecase
+   |     ├──📄 GetEventCapaccityUseCase
+   |     ├──📄 SearchEventUseCase
+   |     ├──📄 SearchActiveEventUseCase
+   |     └──📄 UpdateEvent
    ├──📂 domain
-   |  └──📂 use.case
-   |     ├──📄 GetEventCapaccity
-   |     ├──📄 SearchEvent
-   |     ├──📄 SearchActiveEvent
-   |     └──📄 UpdateEventBooking
+   |  ├──📂 exception
+   |  |  └──📄 EventException
+   |  ├──📂 model
+   |  |  └──📄 Event
+   |  └──📂 port
+   |     └──📄 EventRepositoryPort
    └──📂 infrastructure
       ├──📂 in
       |  └──📂 http
-      |  |  ├──📂 controller
-      |  |  |  └──📄 EventController
-      |  |  └──📂 entity
-      |  |     └──📄 EventRequest
-      |  └──📂 queue
-      |     ├──📂 entity
-      |     |  └──📄 BookingMessage            
-      |     └──📂 sender
-      |        └──📄 BookingConsumer 
+      |     ├──📂 controller
+      |     |  └──📄 EventController
+      |     └──📂 dto
+      |        └──📄 EventRequest
       └──📂 out 
-         ├──📂 db
-         |  ├──📂 entity
-         |  |  └──📄 BookingRecord
-         |  └──📂 repository
-         |     └──📄 EventRepository
-         └──📂 queue
+         └──📂 db
             ├──📂 entity
-            |  └──📄 NotificationMessage            
-            └──📂 sender
-               └──📄 NotificationProducer      
+            |  └──📄 EventRecord
+            └──📂 repository
+               └──📄 EventRepositoryAdapter   
 
 ```
