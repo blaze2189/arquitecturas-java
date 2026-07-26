@@ -6,30 +6,27 @@
 ├──📂 com
    ├──📂 application
    |  ├──📂 dto
-   |  |  └──📄 Book
-   |  └──📂 use_case
-   |     └──📄 BookEvent
+   |  |  └──📄 BookingResponse
+   |  └──📂 usecase
+   |     └──📄 BookEventUseCase
    ├──📂 domain
-   |  ├──📂 Exceptions
-   |  |  ├──📄 BookingException
-   |  |  ├──📄 NotificationException
-   |  |  └──📄 PaymentException
+   |  ├──📂 exceptions
+   |  |  └──📄 BookingException
    |  ├──📂 model
-   |  |  └──📄 Booking
-   |  |  ├──📄 Notification
-   |  |  └──📄 Payment
+   |  |  ├──📄 Booking
+   |  |  └──📄 BookingStatus
    |  ├──📂 port
-   |  |  ├──📄 BookingConsumerPort
    |  |  ├──📄 BookingRespositoryPort
    |  |  ├──📄 NotificationProducerPort
-   |  |  └──📄 PaymentRequestPort
+   |  |  └──📄 PaymentHttpClientPort
    └──📂 infrastructure
       ├──📂 in
       |  └──📂 http
       |  |  ├──📂 controller
       |  |  |  └──📄 BookingController
       |  |  └──📂 dto
-      |  |     └──📄 BookingRequest
+      |  |     ├──📄 BookingRequest
+      |  |     └──📄 BookingResposne
       |  └──📂 queue
       |     ├──📂 dto
       |     |  └──📄 BookingMessage            
@@ -51,6 +48,44 @@
             |  └──📄 NotificationMessage     
             └──📂 producer
                └──📄 NotificationProducer           
+
+```
+
+## Payment
+
+``` 
+├──📂 com
+   ├──📂 application
+   |  ├──📂 dto
+   |  |  └──📄 PaymentResponse
+   |  └──📂 usecase
+   |     └──📄 MakePaymentUseCase
+   ├──📂 domain
+   |  ├──📂 exception
+   |  |  └──📄 PaymentException
+   |  ├──📂 model
+   |  |  └──📄 Payment
+   |  └──📂 port
+   |     ├──📄 PaymentRepositoryPort
+   |     └──📄 VendorHttpClientPort
+   └──📂 infrastructure
+      ├──📂 in
+      |  └──📂 http
+      |     ├──📂 dto
+      |     |  └──📄 PaymentRequest
+      |     └──📂 controrller
+      |        └──📄 PaymentController
+      └──📂 out 
+         ├──📂 db
+         |  ├──📂 entity
+         |  |  └──📄 PaymentRecord
+         |  └──📂 repository
+         |     └──📄 PaymentRepositoryAdapter
+         └──📂 http
+            ├──📂 client
+            |   └──📄 VendorClientAdapter
+            └──📂 entity
+               └──📄 VendorRequest
 
 ```
 
@@ -102,35 +137,6 @@ com
                 └── NotificationProducer  <-- (Implementa NotificationPublisherPort)
 ```
 
-## Payment
-
-``` 
-├──📂 com
-   ├──📂 application
-   |  └──📄 PaymentService
-   ├──📂 domain
-   |  └──📂 use.case
-   |     └──📄 MakePayment
-   └──📂 infrastructure
-      ├──📂 in
-      |  └──📂 http
-      |     ├──📂 controller
-      |     |  └──📄 PaymentController
-      |     └──📂 entity
-      |        └──📄 PaymentRequest
-      └──📂 out 
-         ├──📂 db
-         |  ├──📂 entity
-         |  |  └──📄 PaymentRecord
-         |  └──📂 repository
-         |     └──📄 PaymentRepository
-         └──📂 http
-            ├──📂 client
-            |   └──📄 VendorClient
-            └──📂 entity
-               └──📄 VendorRequest
-
-```
 
 ## Notification
 
