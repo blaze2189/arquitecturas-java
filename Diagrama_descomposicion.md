@@ -38,8 +38,6 @@
             └──📂 sender
                └──📄 NotificationProducer           
 
-──
-└──
 ```
 
 ## Payment
@@ -70,8 +68,6 @@
             └──📂 entity
                └──📄 VendorRequest
 
-──
-└──
 ```
 
 ## Notification
@@ -97,8 +93,6 @@
             └──📂 consumer
                └──📄 NotificationConsusmer
 
-──
-└──
 ```
 
 ## Events
@@ -136,6 +130,5 @@
             |  └──📄 NotificationMessage            
             └──📂 sender
                └──📄 NotificationProducer      
-──
-└──
+
 ```
