@@ -20,7 +20,6 @@
 **Fields:**  
  - id -> integer
  - user_id -> integer
- - password -> varchar
 
 ## Event
 
