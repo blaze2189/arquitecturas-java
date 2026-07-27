@@ -109,11 +109,13 @@
    |     └──📄 SendEmailConfirmationUseCase   
    ├──📂 domain
    |  ├──📂 exception
-   |  |  └──📄 SendEmailException
+   |  |  └──📄 EmailException
    |  ├──📂 model
-   |  |  └──📄 Email
+   |  |  ├──📄 Email
+   |  |  └──📄 NotificationStatus
    |  └──📂 port
-   |     ├──📄 BookingProducerPort
+   |     ├──📄 EmailServerPort
+   |     ├──📄 NotificationProducerPort
    |     └──📄 NotificationRepositoryPort
    └──📂 infrastructure
       ├──📂 in
@@ -124,10 +126,15 @@
       |        └──📄 NotificationConsusmer
       └──📂 out 
          └──📂 queue
+         |  ├──📂 dto
+         |  |   └──📄 NotificationMessage
+         |  └──📂 produccer
+         |     └──📄 BookingProducerAdapter
+         └──📂 sender
             ├──📂 dto
-            |   └──📄 NotificationMessage
+            |   └──📄 EmailRequest
             └──📂 produccer
-               └──📄 BookingProducer
+               └──📄 EmailSenderAdapter
 
 ```
 
@@ -140,10 +147,10 @@
    |  ├──📂 dto
    |  |  └──📄 EventCommand
    |  └──📂 usecase
-   |     ├──📄 GetEventCapaccityUseCase
+   |     ├──📄 GetEventCapacityUseCase
    |     ├──📄 SearchEventUseCase
    |     ├──📄 SearchActiveEventUseCase
-   |     └──📄 UpdateEvent
+   |     └──📄 UpdateEventUseCase
    ├──📂 domain
    |  ├──📂 exception
    |  |  └──📄 EventException
@@ -160,9 +167,19 @@
       |        └──📄 EventRequest
       └──📂 out 
          └──📂 db
+         |  ├──📂 entity
+         |  |  └──📄 EventRecord
+         |  └──📂 repository
+         |     └──📄 EventRepositoryDBAdapter   
+         └──📂 cache
+         |  ├──📂 entity
+         |  |  └──📄 EventCacheRecord
+         |  └──📂 repository
+         |     └──📄 EventRepositoryCacheAdapter 
+         └──📂 repository
             ├──📂 entity
             |  └──📄 EventRecord
             └──📂 repository
-               └──📄 EventRepositoryAdapter   
+               └──📄 EventRepositoryAdapter     
 
 ```
